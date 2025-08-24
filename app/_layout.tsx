@@ -4,7 +4,7 @@ import { Stack, usePathname } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { AuthProvider } from "@/providers/AuthProvider";
+import { AuthProvider, useAuthContext } from "@/providers/AuthProvider";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 import { DashboardLayoutProvider } from "@/state/useDashboardLayout";
 import { GradientBackground } from "@/theme/GradientBackground";
@@ -30,45 +30,70 @@ const mapRouteToTitle = (name: string) => {
 
 function RootLayoutNav() {
   const pathname = usePathname();
+  const { isAuthenticated } = useAuthContext();
   const hideChat = pathname === '/welcome' || pathname === '/' || pathname === '/language' || pathname.startsWith('/(auth)');
 
   return (
     <GradientBackground>
-      <Stack
-        screenOptions={{
-          headerShown: true,
-          header: ({ options, route, navigation }) => (
-            <AppTopBar
-              title={typeof options.title === 'string' ? options.title : mapRouteToTitle(route.name)}
-              onPressBell={() => navigation.navigate('notifications' as never)}
-              onPressProfile={() => navigation.navigate('profile' as never)}
-            />
-          ),
-          freezeOnBlur: false,
-          headerTransparent: false,
-          contentStyle: { backgroundColor: 'transparent' },
-          headerTintColor: colors.text,
-          gestureEnabled: true,
-        }}
-      >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="language" options={{ headerShown: false }} />
-        <Stack.Screen name="welcome" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
-        <Stack.Screen name="resume" options={{ headerShown: true }} />
-        <Stack.Screen 
-          name="settings" 
-          options={{
+      {isAuthenticated ? (
+        <Stack
+          screenOptions={{
             headerShown: true,
+            headerBackVisible: true,
+            header: ({ options, route, navigation }) => (
+              <AppTopBar
+                title={typeof options.title === 'string' ? options.title : mapRouteToTitle(route.name)}
+                onPressBell={() => navigation.navigate('notifications' as never)}
+                onPressProfile={() => navigation.navigate('profile' as never)}
+              />
+            ),
+            freezeOnBlur: false,
+            headerTransparent: false,
+            contentStyle: { backgroundColor: 'transparent' },
+            headerTintColor: colors.text,
             gestureEnabled: true,
-          }} 
-        />
-        <Stack.Screen name="profile" options={{ headerShown: true }} />
-        <Stack.Screen name="notifications" options={{ headerShown: true }} />
-        <Stack.Screen name="community" options={{ headerShown: true }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
+          <Stack.Screen name="resume" options={{ headerShown: true }} />
+          <Stack.Screen
+            name="settings"
+            options={{
+              headerShown: true,
+              gestureEnabled: true,
+            }}
+          />
+          <Stack.Screen name="profile" options={{ headerShown: true }} />
+          <Stack.Screen name="notifications" options={{ headerShown: true }} />
+          <Stack.Screen name="community" options={{ headerShown: true }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      ) : (
+        <Stack
+          screenOptions={{
+            headerShown: true,
+            headerBackVisible: true,
+            header: ({ options, route, navigation }) => (
+              <AppTopBar
+                title={typeof options.title === 'string' ? options.title : mapRouteToTitle(route.name)}
+                onPressBell={() => navigation.navigate('notifications' as never)}
+                onPressProfile={() => navigation.navigate('profile' as never)}
+              />
+            ),
+            freezeOnBlur: false,
+            headerTransparent: false,
+            contentStyle: { backgroundColor: 'transparent' },
+            headerTintColor: colors.text,
+            gestureEnabled: true,
+          }}
+        >
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="language" options={{ headerShown: false }} />
+          <Stack.Screen name="welcome" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      )}
       {!hideChat && (
         <FloatingChatBubble>
           <ChatContent />
