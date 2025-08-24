@@ -4,9 +4,21 @@ import { useLocalSearchParams, router } from 'expo-router';
 import { ExternalLink } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { ROUTES } from '@/constants/routes';
+import { useHeaderTitleLiteral } from '@/hooks/useHeaderTitle';
 
 export default function CategoryScreen() {
   const { slug } = useLocalSearchParams();
+
+  const categoryTitles: Record<string, string> = {
+    gigs: 'Gig Economy',
+    finance: 'Financial Services',
+    banking: 'Banking Solutions',
+    essentials: 'Essential Services',
+    training: 'Training & Education',
+    community: 'Community Resources',
+  };
+
+  useHeaderTitleLiteral(categoryTitles[slug as string] || 'Resources');
 
   // Mock data - replace with actual data
   const resources = [
@@ -33,14 +45,7 @@ export default function CategoryScreen() {
     },
   ];
 
-  const categoryTitles: Record<string, string> = {
-    gigs: 'Gig Economy',
-    finance: 'Financial Services',
-    banking: 'Banking Solutions',
-    essentials: 'Essential Services',
-    training: 'Training & Education',
-    community: 'Community Resources',
-  };
+
 
   return (
     <ScrollView style={styles.container}>

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, FlatList, SafeAre
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import { useHeaderTitle } from '@/hooks/useHeaderTitle';
 import { 
   Briefcase, 
   DollarSign, 
@@ -21,6 +22,7 @@ import { colors, spacing, fontSizes, fontWeights, radius } from '@/theme/tokens'
 
 export default function ResourcesScreen() {
   const { t } = useTranslation();
+  useHeaderTitle('nav.resources');
   const [bannerDismissed, setBannerDismissed] = useState<boolean>(false);
 
   useEffect(() => {

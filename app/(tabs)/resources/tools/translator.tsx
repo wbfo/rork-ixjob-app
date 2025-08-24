@@ -2,8 +2,11 @@ import React from 'react';
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import Colors from '@/constants/colors';
 import { Translator } from '@/components/Translator';
+import { useHeaderTitleLiteral } from '@/hooks/useHeaderTitle';
 
 export default function TranslatorToolScreen() {
+  useHeaderTitleLiteral('Translator');
+  
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.title}>Translator</Text>
