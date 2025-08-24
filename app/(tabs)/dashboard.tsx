@@ -33,7 +33,6 @@ export default function DashboardScreen() {
   const { isLoading: authLoading } = useProtectedRoute();
   const insets = useSafeAreaInsets();
   const [refreshing, setRefreshing] = useState<boolean>(false);
-  const [testName, setTestName] = useState<string>('World');
 
   if (authLoading) {
     return <LoadingView message={t('common.loading')} />;

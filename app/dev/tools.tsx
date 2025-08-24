@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Platform, Switch } from 'react-native';
 import { Stack, router, useNavigation } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,16 +18,11 @@ const STORAGE_KEYS = {
   onboarding: 'onboarding_completed',
 } as const;
 
-export default function DevToolsScreen() {
+function DevToolsContent() {
   const navigation = useNavigation();
-  const { user, logout, checkServerConnection } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const { currentLanguage, setLanguage } = useLanguage();
   const { token, isRegistered, registerForPush, refreshToken, removeToken } = useNotifications();
-
-  if (!__DEV__ && process.env.EXPO_PUBLIC_APP_ENV === 'production') {
-    router.replace('/');
-    return null;
-  }
 
   const [pingMs, setPingMs] = useState<number | null>(null);
   const [pingError, setPingError] = useState<string | null>(null);
@@ -74,15 +69,6 @@ export default function DevToolsScreen() {
     Alert.alert('Session', 'Tokens cleared');
   }, []);
 
-  const saveApiBase = useCallback(async () => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEYS.apiBaseOverride, apiBase);
-      Alert.alert('API Base', 'Saved. Please restart the app.');
-    } catch (e) {
-      Alert.alert('API Base', 'Failed to save');
-    }
-  }, [apiBase]);
-
   const toggleFlag = useCallback(async (key: string) => {
     const next = { ...flags, [key]: !flags[key] };
     setFlags(next);
@@ -111,7 +97,6 @@ export default function DevToolsScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content} testID="dev-tools">
-      <Stack.Screen options={{ headerShown: true }} />
 
       <Card style={styles.card}>
         <Text style={styles.h}>API & Auth</Text>
@@ -155,9 +140,9 @@ export default function DevToolsScreen() {
         <Text style={styles.h}>i18n</Text>
         <Text style={styles.kv}>Current: {currentLanguage}</Text>
         <View style={styles.row}>
-          {(['en','es','zh','ar','pt'] as unknown as Array<'en'|'es'|'zh'|'ar'|'pt'>).map((lng) => (
-            <TouchableOpacity key={lng} onPress={() => setLanguage(lng)} style={styles.pill} testID={`lng-${lng}`}>
-              <Text style={styles.pillText}>{lng.toUpperCase() as string}</Text>
+          {(['en','es','zh','ar','pt']).map((lng) => (
+            <TouchableOpacity key={lng} onPress={() => setLanguage(lng as any)} style={styles.pill} testID={`lng-${lng}`}>
+              <Text style={styles.pillText}>{lng.toUpperCase()}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -209,6 +194,21 @@ export default function DevToolsScreen() {
   );
 }
 
+export default function DevToolsScreen() {
+  // Production guard before any hooks
+  if (!__DEV__ && process.env.EXPO_PUBLIC_APP_ENV === 'production') {
+    router.replace('/');
+    return null;
+  }
+
+  return (
+    <>
+      <Stack.Screen options={{ headerShown: true }} />
+      <DevToolsContent />
+    </>
+  );
+}
+
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, gap: spacing.lg },
@@ -217,6 +217,6 @@ const styles = StyleSheet.create({
   kv: { fontSize: fontSizes.sm, color: colors.textMuted, marginBottom: 6 },
   row: { flexDirection: 'row', alignItems: 'center' },
   pill: { paddingHorizontal: spacing.md, paddingVertical: spacing.xs, borderRadius: radius.pill, backgroundColor: colors.primary + '20', marginRight: spacing.sm },
-  pillText: { color: colors.primary, fontWeight: fontWeights.medium },
+  pillText: { color: colors.primary, fontWeight: fontWeights.medium as any },
   err: { color: '#E53E3E', fontSize: fontSizes.sm, marginTop: spacing.xs },
 });

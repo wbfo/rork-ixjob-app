@@ -77,6 +77,7 @@ function RootLayoutNav() {
           <Stack.Screen name="profile" options={{ headerShown: true }} />
           <Stack.Screen name="notifications" options={{ headerShown: true }} />
           <Stack.Screen name="community" options={{ headerShown: true }} />
+          <Stack.Screen name="dev" options={{ headerShown: true }} />
           <Stack.Screen name="+not-found" />
         </Stack>
       ) : (
