@@ -8,7 +8,8 @@ export default function ResourcesLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerBackVisible: true,
       }}
     >
       <Stack.Screen 
@@ -20,31 +21,31 @@ export default function ResourcesLayout() {
       <Stack.Screen 
         name="tools/index" 
         options={{ 
-          title: 'Tools',
+          title: t('resources.tools', 'Tools'),
         }} 
       />
       <Stack.Screen 
         name="tools/translator" 
         options={{ 
-          title: 'Translator',
+          title: t('resources.translator', 'Translator'),
         }} 
       />
       <Stack.Screen 
         name="tools/notes" 
         options={{ 
-          title: 'Notes',
+          title: t('resources.notes', 'Notes'),
         }} 
       />
       <Stack.Screen 
         name="category/[slug]" 
         options={{ 
-          title: 'Category',
+          title: t('resources.category', 'Category'),
         }} 
       />
       <Stack.Screen 
         name="[id]" 
         options={{ 
-          title: 'Resource Details',
+          title: t('resources.details', 'Resource Details'),
         }} 
       />
     </Stack>
