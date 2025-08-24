@@ -212,6 +212,21 @@ function DevToolsContent() {
           <View style={styles.errorContainer}>
             <Text style={styles.errorTitle}>Backend Errors:</Text>
             <Text style={styles.errorText}>{backendError}</Text>
+            <View style={styles.troubleshootContainer}>
+              <Text style={styles.troubleshootTitle}>🛠️ Quick fix:</Text>
+              <Text style={styles.troubleshootText}>🌐 Network Error: Network connection failed. Base: {API_BASE}</Text>
+              <Text style={styles.troubleshootText}></Text>
+              <Text style={styles.troubleshootText}>URL: {API_BASE}/ping</Text>
+              <Text style={styles.troubleshootText}></Text>
+              <Text style={styles.troubleshootText}>Check if server is running and EXPO_PUBLIC_API_BASE is correct</Text>
+              <Text style={styles.troubleshootText}></Text>
+              <Text style={styles.troubleshootText}>🛠️ Quick fix:</Text>
+              <Text style={styles.troubleshootText}></Text>
+              <Text style={styles.troubleshootText}>1. Navigate to server directory: cd server</Text>
+              <Text style={styles.troubleshootText}>2. Install dependencies: npm install</Text>
+              <Text style={styles.troubleshootText}>3. Start server: npm run dev</Text>
+              <Text style={styles.troubleshootText}>4. Server should be running on http://localhost:3001</Text>
+            </View>
           </View>
         )}
         <View style={styles.infoContainer}>
@@ -384,6 +399,25 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: fontSizes.xs,
     color: colors.textMuted,
+    marginBottom: 4,
+  },
+  troubleshootContainer: {
+    marginTop: 12,
+    padding: 12,
+    backgroundColor: '#fff3cd',
+    borderRadius: 6,
+    borderLeftWidth: 4,
+    borderLeftColor: '#ffc107',
+  },
+  troubleshootTitle: {
+    fontSize: fontSizes.sm,
+    fontWeight: fontWeights.semibold,
+    marginBottom: 8,
+    color: '#856404',
+  },
+  troubleshootText: {
+    fontSize: fontSizes.xs,
+    color: '#856404',
     marginBottom: 4,
   },
 });

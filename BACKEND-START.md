@@ -14,6 +14,30 @@ This will start the Hono/tRPC server on port 3001.
 
 ## Troubleshooting
 
+### Network Error: "Failed to fetch"
+
+If you're seeing network connection errors in the Dev Tools:
+
+1. **Start the backend server first**:
+   ```bash
+   node start-backend-simple.js
+   ```
+
+2. **Wait for the server to fully start** (you should see "Server started successfully!")
+
+3. **Test the connection manually**:
+   - Open http://localhost:3001/api/ping in your browser
+   - You should see "pong" as the response
+
+4. **Check your environment variables**:
+   Make sure `app/.env` contains:
+   ```
+   EXPO_PUBLIC_API_BASE=http://localhost:3001
+   EXPO_PUBLIC_RORK_API_BASE_URL=http://localhost:3001
+   ```
+
+### General Server Issues
+
 If you encounter any issues starting the server, try the following steps:
 
 1. Make sure you have all dependencies installed:
@@ -38,7 +62,13 @@ If you encounter any issues starting the server, try the following steps:
    PORT=3002 node start-backend-simple.js
    ```
 
-5. If you're still having issues, check the error messages for more details.
+5. **For mobile devices**: Use your computer's IP address instead of localhost:
+   ```
+   EXPO_PUBLIC_API_BASE=http://192.168.1.XXX:3001
+   ```
+   Replace XXX with your actual IP address.
+
+6. If you're still having issues, check the error messages for more details.
 
 ## API Endpoints
 
