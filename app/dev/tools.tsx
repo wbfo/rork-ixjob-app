@@ -74,11 +74,19 @@ function DevToolsContent() {
     try {
       setRestStatus('loading');
       setBackendError(null);
-      const response = await fetch(`${API_BASE}/api/ping`);
+      const response = await fetch(`${API_BASE}/api/ping`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        // Add cache control to prevent caching issues
+        cache: 'no-cache',
+      });
       if (response.ok) {
         const text = await response.text();
         console.log('REST API response:', text);
-        if (text.trim().toLowerCase() === 'pong' || text.length > 0) {
+        if (text.includes('pong') || text.length > 0) {
           setRestStatus('success');
         } else {
           throw new Error('Unexpected response from /ping');
@@ -102,8 +110,11 @@ function DevToolsContent() {
   const retryBackendTests = useCallback(() => {
     setBackendError(null);
     setTrpcResponse(null);
-    checkRestEndpoint();
-    checkTrpcEndpoint();
+    // Add a small delay to ensure any previous requests are completed
+    setTimeout(() => {
+      checkRestEndpoint();
+      checkTrpcEndpoint();
+    }, 100);
   }, [checkRestEndpoint, checkTrpcEndpoint]);
 
   // Update tRPC status based on query state
@@ -216,7 +227,7 @@ function DevToolsContent() {
         <Text style={styles.kv}>APP_ENV: {String(process.env.EXPO_PUBLIC_APP_ENV ?? 'dev')}</Text>
         <Text style={styles.kv}>Platform: {Platform.OS}</Text>
         <Text style={styles.kv}>Build: {String((Platform as any).Version ?? '—')}</Text>
-        <Text style={styles.kv}>Commit: {String((process as any).env?.EXPO_PUBLIC_GIT_SHA ?? '—')}</Text>
+        <Text style={styles.kv}>Commit: {String(process.env.EXPO_PUBLIC_GIT_SHA ?? '—')}</Text>
         <Text style={styles.kv}>Override Base URL</Text>
         <View style={styles.row}>
           <PrimaryButton title="Use LAN" onPress={async () => {

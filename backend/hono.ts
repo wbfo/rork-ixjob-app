@@ -30,7 +30,7 @@ app.get("/", (c) => {
 });
 
 app.get("/ping", (c) => {
-  return c.json({ status: "ok", message: "pong" });
+  return c.text("pong");
 });
 
 app.get("/health", (c) => {
