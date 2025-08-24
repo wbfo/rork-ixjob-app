@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { trpc, trpcClient } from "@/lib/trpc";
-import { Stack, usePathname } from "expo-router";
+import { Stack, usePathname, router } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -19,7 +19,6 @@ SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
-// Fallback mapping if a screen forgets to set a title
 const mapRouteToTitle = (name: string) => {
   const pretty = name.split('/').pop()?.replace(/[-_]/g, ' ') ?? 'ixJOB';
   return pretty
@@ -32,6 +31,18 @@ function RootLayoutNav() {
   const pathname = usePathname();
   const { isAuthenticated } = useAuthContext();
   const hideChat = pathname === '/welcome' || pathname === '/' || pathname === '/language' || pathname.startsWith('/(auth)');
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (pathname === '/' || pathname.startsWith('/(auth)') || pathname === '/welcome' || pathname === '/language' || pathname === '/index') {
+        router.replace('/(tabs)/dashboard');
+      }
+    } else {
+      if (pathname.startsWith('/(tabs)') || pathname === '/profile' || pathname === '/settings' || pathname === '/notifications') {
+        router.replace('/welcome');
+      }
+    }
+  }, [isAuthenticated, pathname]);
 
   return (
     <GradientBackground>

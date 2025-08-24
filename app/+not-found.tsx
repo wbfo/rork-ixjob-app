@@ -16,7 +16,7 @@ export default function NotFoundScreen() {
         <Text style={styles.title}>{t('errors.notFoundTitle')}</Text>
         <Text style={styles.message}>This page doesn&apos;t exist.</Text>
         
-        <Link href={ROUTES.WELCOME} style={styles.link}>
+        <Link href={ROUTES.TABS.DASHBOARD} style={styles.link}>
           <Text style={styles.linkText}>{t('errors.backHome')}</Text>
         </Link>
       </View>
