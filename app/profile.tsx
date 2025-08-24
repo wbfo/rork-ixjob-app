@@ -9,6 +9,7 @@ import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { colors, spacing, fontSizes, fontWeights, radius } from '@/theme/tokens';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useHeaderTitle } from '@/hooks/useHeaderTitle';
+import { router } from 'expo-router';
 
 export default function ProfileScreen() {
   useHeaderTitle('nav.profile');
@@ -125,6 +126,15 @@ export default function ProfileScreen() {
             onPress={() => console.log('Edit profile')}
             testID="edit-profile-button"
           />
+          {(__DEV__ || (process.env.EXPO_PUBLIC_APP_ENV !== 'production')) ? (
+            <View style={{ marginTop: spacing.md }}>
+              <PrimaryButton
+                title="Dev Tools"
+                onPress={() => router.push('/dev/tools')}
+                testID="dev-tools-button"
+              />
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </View>

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform, Image } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -72,9 +72,27 @@ function AppTopBar({ title, onPressBell, onPressProfile, onPressSettings, onPres
     router.replace('/(tabs)/dashboard');
   }, []);
 
+  const tapCount = useRef<number>(0);
+  const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLogoTap = () => {
+    // Secret: 7 taps within 2 seconds
+    tapCount.current += 1;
+    if (tapTimer.current) clearTimeout(tapTimer.current);
+    tapTimer.current = setTimeout(() => { tapCount.current = 0; }, 2000);
+    if (tapCount.current >= 7) {
+      tapCount.current = 0;
+      if (__DEV__ || (process.env.EXPO_PUBLIC_APP_ENV !== 'production')) {
+        router.push('/dev/tools');
+        return;
+      }
+    }
+    handleClose();
+  };
+
   return (
     <View style={[styles.wrap, { paddingTop: top, backgroundColor: headerBg }]} testID="app-top-bar">
-      <TouchableOpacity accessibilityLabel="Go home" onPress={handleClose} hitSlop={12} style={styles.logoBtn} testID="header-logo">
+      <TouchableOpacity accessibilityLabel="Go home" onPress={handleLogoTap} hitSlop={12} style={styles.logoBtn} testID="header-logo">
         <Image
           source={require('../assets/images/adaptive-icon.png')}
           style={styles.logo}

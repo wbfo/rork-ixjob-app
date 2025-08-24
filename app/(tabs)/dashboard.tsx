@@ -23,7 +23,6 @@ import { Card } from '@/components/ui/Card';
 import { colors, spacing, fontWeights, fontSizes, radius } from '@/theme/tokens';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { trpc } from '@/lib/trpc';
-import HealthCheck from '@/components/HealthCheck';
 
 export default function DashboardScreen() {
   const { t } = useTranslation();
@@ -35,8 +34,6 @@ export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [testName, setTestName] = useState<string>('World');
-  
-  const hiQuery = trpc.example.hi.useQuery({ name: 'World' }, { enabled: false });
 
   if (authLoading) {
     return <LoadingView message={t('common.loading')} />;
@@ -48,18 +45,6 @@ export default function DashboardScreen() {
     setTimeout(() => setRefreshing(false), 1000);
   };
 
-  const testBackend = async () => {
-    try {
-      await hiQuery.refetch();
-      if (hiQuery.data) {
-        console.log('Backend test result:', hiQuery.data);
-        alert(`Backend says: ${hiQuery.data.hello} at ${hiQuery.data.date}`);
-      }
-    } catch (error) {
-      console.error('Backend test error:', error);
-      alert('Backend test failed. Check console for details.');
-    }
-  };
 
 
 
@@ -207,24 +192,6 @@ export default function DashboardScreen() {
           }
           testID="dashboard-scroll"
         >
-          <Card style={styles.card}>
-            <Text style={styles.cardTitle}>Backend Test</Text>
-            <TouchableOpacity 
-              style={styles.testButton}
-              onPress={testBackend}
-              disabled={hiQuery.isLoading}
-            >
-              <Text style={styles.testButtonText}>
-                {hiQuery.isLoading ? 'Testing...' : 'Test Backend Connection'}
-              </Text>
-            </TouchableOpacity>
-            {hiQuery.error && (
-              <Text style={styles.errorText}>
-                Error: {hiQuery.error.message}
-              </Text>
-            )}
-          </Card>
-          <HealthCheck />
           {renderOverallProgressCard()}
           {renderQuickStatsAndActions()}
           {renderSuggestionsCard()}
@@ -438,23 +405,5 @@ const styles = StyleSheet.create({
     color: colors.textMuted,
     lineHeight: 20,
     fontStyle: 'italic',
-  },
-  testButton: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.md,
-    borderRadius: radius.md,
-    alignItems: 'center',
-    marginTop: spacing.sm,
-  },
-  testButtonText: {
-    fontSize: fontSizes.md,
-    fontWeight: fontWeights.medium,
-    color: colors.textInverse,
-  },
-  errorText: {
-    fontSize: fontSizes.sm,
-    color: '#E53E3E',
-    marginTop: spacing.sm,
   },
 });
