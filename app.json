@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IxJOB App",
-    "slug": "ixjob",
+    "name": "IxJOBOLD App",
+    "slug": "ixjobold",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.rork.ixjob",
+      "bundleIdentifier": "app.rork.ixjobold",
       "infoPlist": {
         "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to use your location.",
         "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to use your location.",
@@ -35,7 +35,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "app.rork.ixjob",
+      "package": "app.rork.ixjobold",
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
