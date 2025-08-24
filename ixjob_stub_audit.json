@@ -1,0 +1,442 @@
+{
+  "audit_metadata": {
+    "timestamp": "2025-01-24T00:00:00Z",
+    "version": "1.0.0",
+    "auditor": "Rork AI Assistant",
+    "scope": "ixJOB Phase 1 Features"
+  },
+  "risk_map": [
+    {
+      "feature_name": "Resume OCR Import",
+      "file_path": "app/(tabs)/resume/create.tsx",
+      "function_or_endpoint": "handlePhotoImport()",
+      "is_stub": true,
+      "returns_placeholder_examples": "console.log('Photo selected for OCR:', result.assets[0].uri)",
+      "expected_contract_name": "ResumeAnalysisResult",
+      "upstream_dependency": "Gemini Vision OCR",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Resume File Upload",
+      "file_path": "app/(tabs)/resume/create.tsx", 
+      "function_or_endpoint": "handleFileUpload()",
+      "is_stub": true,
+      "returns_placeholder_examples": "console.log('File selected for import:', result.assets[0].uri)",
+      "expected_contract_name": "ResumeParseResult",
+      "upstream_dependency": "Gemini Vision OCR",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Resume Draft Creation",
+      "file_path": "app/(tabs)/resume/create.tsx",
+      "function_or_endpoint": "createDraft()",
+      "is_stub": true,
+      "returns_placeholder_examples": "const mockResumeId = `resume_${Date.now()}`",
+      "expected_contract_name": "ResumeDraftResult", 
+      "upstream_dependency": "Backend API",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Resume Editor Save",
+      "file_path": "app/(tabs)/resume/[resumeId]/edit.tsx",
+      "function_or_endpoint": "handleAutoSave()",
+      "is_stub": true,
+      "returns_placeholder_examples": "console.log('Auto-saving resume:', resumeId, resumeData)",
+      "expected_contract_name": "ResumeSaveResult",
+      "upstream_dependency": "Backend API",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Resume Preview/Export",
+      "file_path": "app/(tabs)/resume/[resumeId]/edit.tsx",
+      "function_or_endpoint": "handleDownload()",
+      "is_stub": true,
+      "returns_placeholder_examples": "Alert.alert('Download', 'Resume download feature coming soon!')",
+      "expected_contract_name": "PDF/DOCX file",
+      "upstream_dependency": "PDF Generation API",
+      "priority": "P1"
+    },
+    {
+      "feature_name": "Text Translation",
+      "file_path": "components/Translator.tsx",
+      "function_or_endpoint": "onTranslate()",
+      "is_stub": true,
+      "returns_placeholder_examples": "const fake = `${sourceText}\\n\\n— translated (${targetLang})`",
+      "expected_contract_name": "TranslationResult",
+      "upstream_dependency": "Google Translate API",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Voice Transcription",
+      "file_path": "components/Translator.tsx",
+      "function_or_endpoint": "Web MediaRecorder",
+      "is_stub": false,
+      "returns_placeholder_examples": "Uses real STT API on web platform",
+      "expected_contract_name": "STTResponse",
+      "upstream_dependency": "Rork STT API",
+      "priority": "P1"
+    },
+    {
+      "feature_name": "Mock Interview Session",
+      "file_path": "app/(tabs)/interview/mock.tsx",
+      "function_or_endpoint": "startSession()",
+      "is_stub": true,
+      "returns_placeholder_examples": "router.push({ pathname: '/(tabs)/interview/feedback', params: { industry, role, mode } })",
+      "expected_contract_name": "InterviewSessionResult",
+      "upstream_dependency": "OpenAI GPT-4o",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "AI Feedback Analysis",
+      "file_path": "app/(tabs)/interview/feedback.tsx",
+      "function_or_endpoint": "getFeedback()",
+      "is_stub": true,
+      "returns_placeholder_examples": "const mockFeedback = `## Feedback Analysis\\n\\n**Strengths:**\\n• Clear communication style`",
+      "expected_contract_name": "InterviewFeedbackResult",
+      "upstream_dependency": "OpenAI GPT-4o",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Voice Recording",
+      "file_path": "app/(tabs)/interview/feedback.tsx",
+      "function_or_endpoint": "recordAudio()",
+      "is_stub": true,
+      "returns_placeholder_examples": "Alert.alert('Voice Input', 'Voice recording is not available on web')",
+      "expected_contract_name": "Audio transcription",
+      "upstream_dependency": "Expo AV + STT",
+      "priority": "P1"
+    },
+    {
+      "feature_name": "Application Creation",
+      "file_path": "app/(tabs)/tracker/new.tsx",
+      "function_or_endpoint": "handleSave()",
+      "is_stub": true,
+      "returns_placeholder_examples": "console.log('Saving application:', { company, position, location, salary, notes })",
+      "expected_contract_name": "JobApplicationResult",
+      "upstream_dependency": "Backend API",
+      "priority": "P1"
+    },
+    {
+      "feature_name": "Job Photo OCR",
+      "file_path": "Not implemented",
+      "function_or_endpoint": "N/A",
+      "is_stub": true,
+      "returns_placeholder_examples": "Feature missing entirely",
+      "expected_contract_name": "JobPostParseResult",
+      "upstream_dependency": "Gemini Vision OCR",
+      "priority": "P1"
+    },
+    {
+      "feature_name": "AI Resume Chat",
+      "file_path": "app/resume/ai-start.tsx",
+      "function_or_endpoint": "handleSendMessage()",
+      "is_stub": true,
+      "returns_placeholder_examples": "await new Promise(resolve => setTimeout(resolve, 1200)); const aiMessage = { content: 'Great! Based on what you've told me...' }",
+      "expected_contract_name": "AIChatResult",
+      "upstream_dependency": "OpenAI GPT-4o",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Resume Generation",
+      "file_path": "app/resume/ai-start.tsx",
+      "function_or_endpoint": "handleGenerateResume()",
+      "is_stub": true,
+      "returns_placeholder_examples": "const mockResumeId = `resume_${Date.now()}`",
+      "expected_contract_name": "ResumeGenerationResult",
+      "upstream_dependency": "OpenAI GPT-4o",
+      "priority": "P0"
+    },
+    {
+      "feature_name": "Notes CRUD",
+      "file_path": "app/notes.tsx",
+      "function_or_endpoint": "handleCreateNote()",
+      "is_stub": true,
+      "returns_placeholder_examples": "console.log('Create note')",
+      "expected_contract_name": "NoteResult",
+      "upstream_dependency": "Backend API",
+      "priority": "P2"
+    },
+    {
+      "feature_name": "Notes Persistence",
+      "file_path": "app/notes.tsx",
+      "function_or_endpoint": "State only",
+      "is_stub": true,
+      "returns_placeholder_examples": "In-memory array, no persistence",
+      "expected_contract_name": "NotesListResult",
+      "upstream_dependency": "Backend API",
+      "priority": "P2"
+    }
+  ],
+  "contracts": {
+    "ResumeAnalysisResult": {
+      "current_implementation": "None (stubbed)",
+      "proposed_schema": {
+        "id": "string",
+        "status": "'processing' | 'completed' | 'failed'",
+        "extractedText": "string",
+        "detectedLanguage": "string",
+        "sections": {
+          "personalInfo": "PersonalInfo",
+          "summary": "string",
+          "experience": "WorkExperience[]",
+          "education": "Education[]",
+          "skills": "string[]",
+          "certifications": "Certification[]"
+        },
+        "confidence": "number",
+        "suggestions": "string[]",
+        "atsScore": "number"
+      }
+    },
+    "TranslationResult": {
+      "current_implementation": "Simple string concatenation",
+      "proposed_schema": {
+        "originalText": "string",
+        "translatedText": "string", 
+        "sourceLang": "string",
+        "targetLang": "string",
+        "confidence": "number",
+        "alternatives": "string[]?",
+        "glossaryMatches": "GlossaryMatch[]",
+        "processingTime": "number"
+      }
+    },
+    "InterviewFeedbackResult": {
+      "current_implementation": "Mock markdown string",
+      "proposed_schema": {
+        "sessionId": "string",
+        "overallScore": "number",
+        "analysis": {
+          "strengths": "string[]",
+          "improvements": "string[]",
+          "starMethodUsage": "boolean",
+          "communicationClarity": "number",
+          "contentRelevance": "number",
+          "confidence": "number"
+        },
+        "suggestions": "Suggestion[]",
+        "transcription": "string?",
+        "duration": "number"
+      }
+    },
+    "JobPostParseResult": {
+      "current_implementation": "Not implemented",
+      "proposed_schema": {
+        "id": "string",
+        "company": "string",
+        "position": "string",
+        "location": "string",
+        "salaryRange": "SalaryRange?",
+        "requirements": "string[]",
+        "responsibilities": "string[]",
+        "benefits": "string[]",
+        "applicationDeadline": "string?",
+        "jobType": "'full-time' | 'part-time' | 'contract' | 'internship'",
+        "experienceLevel": "'entry' | 'mid' | 'senior' | 'executive'",
+        "extractedText": "string",
+        "confidence": "number"
+      }
+    },
+    "MatchScoreResult": {
+      "current_implementation": "Not implemented",
+      "proposed_schema": {
+        "overallScore": "number",
+        "breakdown": {
+          "skillsMatch": "number",
+          "experienceMatch": "number", 
+          "educationMatch": "number",
+          "locationMatch": "number"
+        },
+        "missingSkills": "string[]",
+        "matchingSkills": "string[]",
+        "recommendations": "string[]",
+        "salaryFit": "'below' | 'within' | 'above' | 'unknown'"
+      }
+    }
+  },
+  "wiring": {
+    "resume_builder": {
+      "sdk": "Gemini 2.5 Pro Vision",
+      "function_signature": "analyzeResumeImage(imageUri: string): Promise<ResumeAnalysisResult>",
+      "error_handling": "30s timeout, fallback to manual entry, partial results allowed",
+      "test_fixtures": ["pdf-english-swe.pdf", "image-spanish-nurse.jpg", "docx-chinese-marketing.docx"],
+      "log_format": "resume_ocr_processed: { elapsed_ms, tokens_used, confidence }"
+    },
+    "employment_translator": {
+      "sdk": "Google Translate API",
+      "function_signature": "translateText(text: string, sourceLang: string, targetLang: string): Promise<TranslationResult>",
+      "error_handling": "10s timeout, show original text on failure, cache results",
+      "test_fixtures": ["spanish-job-desc.txt", "arabic-skills.txt", "chinese-experience.txt"],
+      "log_format": "translation_completed: { elapsed_ms, char_count, source_lang, target_lang }"
+    },
+    "interview_prep": {
+      "sdk": "OpenAI GPT-4o",
+      "function_signature": "analyzeInterviewAnswer(answer: string, question: string): Promise<InterviewFeedbackResult>",
+      "error_handling": "45s timeout, generic feedback on failure, save partial analysis",
+      "test_fixtures": ["star-method-answer.txt", "weak-answer.txt", "technical-answer.txt"],
+      "log_format": "interview_feedback_generated: { elapsed_ms, tokens_used, score }"
+    },
+    "job_tracker": {
+      "sdk": "Gemini Vision OCR + Backend API",
+      "function_signature": "parseJobPosting(imageUri: string): Promise<JobPostParseResult>",
+      "error_handling": "20s timeout, manual entry fallback, confidence threshold 70%",
+      "test_fixtures": ["linkedin-job.jpg", "indeed-posting.png", "company-website.jpg"],
+      "log_format": "job_ocr_processed: { elapsed_ms, fields_extracted, confidence }"
+    }
+  },
+  "guardrails": {
+    "feature_flags": {
+      "NO_PLACEHOLDERS": "process.env.NODE_ENV === 'production'",
+      "ENABLE_AI_FEATURES": "true",
+      "ENABLE_VOICE_INPUT": "Platform.OS !== 'web'"
+    },
+    "unit_tests": [
+      "should not return TODO or placeholder text",
+      "should not return empty arrays for required fields",
+      "should not contain mock or lorem ipsum content"
+    ],
+    "e2e_tests": [
+      "resume upload returns non-static data",
+      "translation produces different output for different inputs",
+      "interview feedback is specific to answer content"
+    ]
+  },
+  "fixlist": [
+    {
+      "ticket_title": "Implement Resume OCR Analysis",
+      "ticket_id": "IXJOB-001",
+      "owner": "AI/Backend",
+      "estimate": "L",
+      "acceptance_criteria": [
+        "Upload image → extract text with 90%+ accuracy",
+        "Parse sections (name, experience, skills, education)",
+        "Return structured JSON matching ResumeAnalysisResult schema",
+        "Handle multiple languages (EN, ES, PT, ZH, AR)"
+      ]
+    },
+    {
+      "ticket_title": "Resume File Parser (PDF/DOCX)",
+      "ticket_id": "IXJOB-002", 
+      "owner": "AI/Backend",
+      "estimate": "M",
+      "acceptance_criteria": [
+        "Parse PDF and DOCX files",
+        "Extract formatted text preserving structure",
+        "Same output schema as OCR endpoint"
+      ]
+    },
+    {
+      "ticket_title": "Resume CRUD Backend",
+      "ticket_id": "IXJOB-003",
+      "owner": "Backend",
+      "estimate": "M",
+      "acceptance_criteria": [
+        "Create/Read/Update/Delete resume drafts",
+        "Auto-save every 5 seconds",
+        "Version history (last 5 versions)"
+      ]
+    },
+    {
+      "ticket_title": "Google Translate Integration",
+      "ticket_id": "IXJOB-004",
+      "owner": "AI/Backend",
+      "estimate": "S",
+      "acceptance_criteria": [
+        "Replace mock translation with Google Translate API",
+        "Support 50+ languages",
+        "Include confidence scores and alternatives"
+      ]
+    },
+    {
+      "ticket_title": "Mobile Voice Recording",
+      "ticket_id": "IXJOB-005",
+      "owner": "Frontend",
+      "estimate": "M",
+      "acceptance_criteria": [
+        "Implement Expo AV recording on iOS/Android",
+        "Send audio to STT API",
+        "Match web functionality"
+      ]
+    },
+    {
+      "ticket_title": "AI Interview Feedback Engine",
+      "ticket_id": "IXJOB-006",
+      "owner": "AI/Backend",
+      "estimate": "L",
+      "acceptance_criteria": [
+        "Analyze answers using STAR method",
+        "Provide specific, actionable feedback",
+        "Score communication, content, structure",
+        "Support multiple industries/roles"
+      ]
+    },
+    {
+      "ticket_title": "Mock Interview Session Flow",
+      "ticket_id": "IXJOB-007",
+      "owner": "Frontend/AI",
+      "estimate": "M",
+      "acceptance_criteria": [
+        "Generate role-specific questions",
+        "Real-time Q&A with AI",
+        "Session recording and playback"
+      ]
+    },
+    {
+      "ticket_title": "Job Application CRUD",
+      "ticket_id": "IXJOB-008",
+      "owner": "Backend",
+      "estimate": "S",
+      "acceptance_criteria": [
+        "Save/edit job applications",
+        "Status tracking (applied, interview, offer, rejected)",
+        "Notes and follow-up reminders"
+      ]
+    },
+    {
+      "ticket_title": "Job Posting OCR",
+      "ticket_id": "IXJOB-009",
+      "owner": "AI/Backend",
+      "estimate": "M",
+      "acceptance_criteria": [
+        "Photo → extract job details",
+        "Parse company, role, requirements, salary",
+        "Auto-populate application form"
+      ]
+    },
+    {
+      "ticket_title": "Remove All Placeholders",
+      "ticket_id": "IXJOB-010",
+      "owner": "Frontend",
+      "estimate": "S",
+      "acceptance_criteria": [
+        "Replace all mock data with real API calls",
+        "Add NO_PLACEHOLDERS feature flag",
+        "100% test coverage for stub detection"
+      ]
+    },
+    {
+      "ticket_title": "Error Handling & Fallbacks",
+      "ticket_id": "IXJOB-011",
+      "owner": "Frontend/Backend",
+      "estimate": "S",
+      "acceptance_criteria": [
+        "Graceful degradation when AI services fail",
+        "Offline mode for basic features",
+        "User-friendly error messages"
+      ]
+    }
+  ],
+  "summary": {
+    "total_stubs_found": 15,
+    "critical_p0_stubs": 8,
+    "high_p1_stubs": 5,
+    "medium_p2_stubs": 2,
+    "estimated_timeline_months": 4,
+    "key_blockers": [
+      "AI service integrations (Gemini, OpenAI, Google Translate)",
+      "Backend API development",
+      "Mobile voice recording implementation"
+    ],
+    "production_readiness": "25% - UI complete, backend integration needed"
+  }
+}
