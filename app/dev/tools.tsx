@@ -213,10 +213,10 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
   content: { padding: spacing.lg, gap: spacing.lg },
   card: { padding: spacing.lg },
-  h: { fontSize: fontSizes.lg, fontWeight: fontWeights.semibold as const, color: colors.text, marginBottom: spacing.sm },
+  h: { fontSize: fontSizes.lg, fontWeight: fontWeights.semibold, color: colors.text, marginBottom: spacing.sm },
   kv: { fontSize: fontSizes.sm, color: colors.textMuted, marginBottom: 6 },
   row: { flexDirection: 'row', alignItems: 'center' },
   pill: { paddingHorizontal: spacing.md, paddingVertical: spacing.xs, borderRadius: radius.pill, backgroundColor: colors.primary + '20', marginRight: spacing.sm },
-  pillText: { color: colors.primary, fontWeight: fontWeights.medium as const },
+  pillText: { color: colors.primary, fontWeight: fontWeights.medium },
   err: { color: '#E53E3E', fontSize: fontSizes.sm, marginTop: spacing.xs },
 });
