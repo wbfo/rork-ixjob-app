@@ -20,7 +20,31 @@ SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 const mapRouteToTitle = (name: string) => {
-  const pretty = name.split('/').pop()?.replace(/[-_]/g, ' ') ?? 'ixJOB';
+  // Handle specific route mappings
+  const routeMap: Record<string, string> = {
+    'dashboard': 'Dashboard',
+    'resume': 'Resume',
+    'interview': 'Interview',
+    'tracker': 'Jobs',
+    'resources': 'Resources',
+    'community': 'Community',
+    'profile': 'Profile',
+    'settings': 'Settings',
+    'notifications': 'Notifications',
+    'dev': 'Dev Tools',
+  };
+  
+  // Extract the main route name
+  const routeName = name.includes('(tabs)') 
+    ? name.split('/(tabs)/')[1]?.split('/')[0] || name.split('/').pop()
+    : name.split('/').pop();
+    
+  if (routeName && routeMap[routeName]) {
+    return routeMap[routeName];
+  }
+  
+  // Fallback to pretty formatting
+  const pretty = routeName?.replace(/[-_]/g, ' ') ?? 'ixJOB';
   return pretty
     .split(' ')
     .map(w => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
