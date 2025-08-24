@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  avatar    String?
+  language  String   @default("en")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  resumes     Resume[]
+  jobTrackers JobTracker[]
+  interviews  Interview[]
+  notes       Note[]
+
+  @@map("users")
+}
+
+model Resume {
+  id          String   @id @default(cuid())
+  title       String
+  content     Json     // Store resume data as JSON
+  template    String   @default("modern")
+  isPublic    Boolean  @default(false)
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("resumes")
+}
+
+model JobTracker {
+  id          String    @id @default(cuid())
+  company     String
+  position    String
+  status      String    // applied, interview, offer, rejected, etc.
+  description String?
+  salary      String?
+  location    String?
+  appliedAt   DateTime?
+  notes       String?
+  userId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interviews Interview[]
+
+  @@map("job_trackers")
+}
+
+model Interview {
+  id           String     @id @default(cuid())
+  type         String     // mock, video, general
+  status       String     // scheduled, completed, cancelled
+  scheduledAt  DateTime?
+  completedAt  DateTime?
+  feedback     Json?      // Store feedback as JSON
+  score        Float?
+  userId       String
+  jobTrackerId String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobTracker JobTracker? @relation(fields: [jobTrackerId], references: [id], onDelete: SetNull)
+
+  @@map("interviews")
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  tags      String[] @default([])
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notes")
+}
+
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String
+  category    String
+  tags        String[] @default([])
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("resources")
+}

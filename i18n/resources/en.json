@@ -1,0 +1,221 @@
+{
+  "app": {
+    "title": "IxJOB"
+  },
+  "language": {
+    "welcomeTo": "Welcome to",
+    "appName": "IxJOB",
+    "tagline": "Your AI job coach that speaks your language",
+    "selectLanguage": "Select Language",
+    "continue": "Continue",
+    "changeAnytime": "You can change this anytime in Settings.",
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文（简体）",
+      "ar": "العربية",
+      "pt": "Português (Brasil)"
+    }
+  },
+  "welcome": {
+    "title": "Welcome to IxJOB",
+    "welcomeTo": "Welcome to",
+    "appName": "IxJOB",
+    "tagline": "Your AI job coach that speaks your language",
+    "login": "Log in",
+    "signup": "Sign up",
+    "changeLanguage": "Change language"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot Password?",
+      "loginButton": "Log In",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up"
+    },
+    "signup": {
+      "title": "Create Account",
+      "subtitle": "Join thousands finding their dream jobs",
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "signupButton": "Sign Up",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in"
+    },
+    "forgot": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email to receive reset instructions",
+      "email": "Email",
+      "sendButton": "Send Reset Link",
+      "backToLogin": "Back to Login"
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "resume": "Resume",
+    "translate": "Translator",
+    "interview": "Interview",
+    "mockInterview": "Mock Interview",
+    "videoPractice": "Video Practice",
+    "questionBank": "Question Bank",
+    "aiFeedback": "AI Feedback",
+    "interviewPreparation": "Interview Preparation",
+    "jobs": "Jobs",
+    "tracker": "Tracker",
+    "resources": "Resources",
+    "chat": "Chat",
+    "settings": "Settings",
+    "community": "Community",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "alerts": "Alerts"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back!",
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity",
+    "customize": {
+      "title": "Customize Dashboard",
+      "widgetsTitle": "Your Widgets",
+      "addWidget": "Add",
+      "addWidgetsTitle": "Add Widgets",
+      "description": "Drag to reorder, tap eye to show/hide, use size controls to resize.",
+      "resetTitle": "Reset Dashboard",
+      "resetMessage": "This will restore the default dashboard layout. Are you sure?",
+      "reset": "Reset",
+      "resetDefaults": "Reset to Defaults"
+    },
+    "widgets": {
+      "overallProgress": {
+        "title": "Overall Progress"
+      },
+      "quickStats": {
+        "title": "Quick Stats"
+      },
+      "nextActions": {
+        "title": "Next Actions"
+      },
+      "recentApplications": {
+        "title": "Recent Applications"
+      },
+      "communityHighlight": {
+        "title": "Community Highlight"
+      },
+      "translatorShortcut": {
+        "title": "Quick Translator"
+      },
+      "suggestedTasks": {
+        "title": "Suggested Tasks"
+      },
+      "streaks": {
+        "title": "Activity Streaks"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageDescription": "Change your app language",
+    "notifications": "Notifications",
+    "subscription": "Subscription",
+    "save": "Save",
+    "saved": "Settings saved successfully"
+  },
+  "resources": {
+    "title": "Resources",
+    "categories": {
+      "gigs": "Gig Work",
+      "finance": "Finance",
+      "banking": "Banking",
+      "essentials": "Essentials",
+      "training": "Training",
+      "community": "Community"
+    },
+    "community": {
+      "title": "Community",
+      "subtitle": "Ask questions, share wins, get tips"
+    },
+    "notes": {
+      "title": "Notes",
+      "subtitle": "Save ideas, tags, and convert to actions"
+    },
+    "banner": {
+      "community": "💬 Connect with other job seekers — Join the Community"
+    }
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "backHome": "Back to Home"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back": "Back",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "done": "Done",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "comingSoon": "Coming soon",
+    "workInProgress": "This feature is under active development.",
+    "goHome": "Go to Dashboard",
+    "send": "Send",
+    "text": "Text",
+    "audio": "Audio",
+    "noneYet": "None yet",
+    "noResults": "No results found",
+    "voiceInput": "Voice input"
+  },
+  "interview": {
+    "startMock": "Start Mock Interview",
+    "industry": "Industry",
+    "role": "Role",
+    "start": "Start Interview",
+    "recentSessions": "Recent Sessions",
+    "recordAndReview": "Record & Review",
+    "startRecording": "Start Recording",
+    "uploadClip": "Upload Video Clip",
+    "videoNote": "Practice your body language and speaking confidence",
+    "tips": "Video Tips",
+    "tipLighting": "Ensure good lighting on your face",
+    "tipBackground": "Use a clean, professional background",
+    "tipTiming": "Keep answers concise (1-2 minutes)",
+    "searchQuestions": "Search questions...",
+    "pasteAnswer": "Practice Your Answer",
+    "answerPlaceholder": "Type or speak your interview answer here...",
+    "getFeedback": "Get AI Feedback",
+    "feedback": "AI Feedback",
+    "noFeedbackYet": "Submit an answer to get personalized feedback",
+    "mockInterview": "Mock Interview",
+    "videoPractice": "Video Practice",
+    "questionBank": "Question Bank",
+    "aiFeedback": "AI Feedback",
+    "prepSubtitle": "Confidently prepare for your next interview with AI‑guided practice.",
+    "tileDescMock": "Simulate a real interview and get structured feedback.",
+    "tileDescVideo": "Practice answers on camera and review your delivery.",
+    "tileDescQuestions": "Browse curated questions by role and difficulty.",
+    "tileDescFeedback": "Paste an answer for targeted, instant coaching.",
+    "quickTipsTitle": "Quick Tips",
+    "quickTipStar": "Use the STAR method for behavioral questions.",
+    "quickTipResearch": "Research the company’s products, culture, and recent news.",
+    "quickTipQuestions": "Prepare 3–5 thoughtful questions for the interviewer.",
+    "translatorHeading": "Translator"
+  },
+  "home": {
+    "communityWidget": {
+      "title": "From the Community"
+    }
+  }
+}

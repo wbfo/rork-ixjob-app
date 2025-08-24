@@ -1,0 +1,113 @@
+{
+  "app": {
+    "title": "ixJOB"
+  },
+  "language": {
+    "welcomeTo": "مرحباً بك في",
+    "appName": "ixJOB",
+    "tagline": "مدرب الوظائف الذكي الذي يتحدث لغتك",
+    "selectLanguage": "اختر اللغة",
+    "continue": "متابعة",
+    "changeAnytime": "يمكنك تغيير هذا في أي وقت في الإعدادات.",
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文（简体）",
+      "ar": "العربية",
+      "pt": "Português (Brasil)"
+    }
+  },
+  "welcome": {
+    "welcomeTo": "مرحباً بك في",
+    "appName": "ixJOB",
+    "tagline": "مدرب الوظائف الذكي الذي يتحدث لغتك",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "changeLanguage": "تغيير اللغة"
+  },
+  "auth": {
+    "login": {
+      "title": "مرحباً بعودتك",
+      "subtitle": "سجل دخولك إلى حسابك",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "loginButton": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signUpLink": "إنشاء حساب"
+    },
+    "signup": {
+      "title": "إنشاء حساب",
+      "subtitle": "انضم إلى الآلاف الذين يجدون وظائف أحلامهم",
+      "name": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "signupButton": "إنشاء حساب",
+      "hasAccount": "لديك حساب بالفعل؟",
+      "loginLink": "تسجيل الدخول"
+    },
+    "forgot": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "أدخل بريدك الإلكتروني لتلقي تعليمات الإعادة",
+      "email": "البريد الإلكتروني",
+      "sendButton": "إرسال رابط الإعادة",
+      "backToLogin": "العودة إلى تسجيل الدخول"
+    }
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "resume": "السيرة الذاتية",
+    "translate": "المترجم",
+    "interview": "المقابلة",
+    "tracker": "المتتبع",
+    "resources": "الموارد",
+    "chat": "الدردشة",
+    "settings": "الإعدادات"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحباً بعودتك!",
+    "quickActions": "الإجراءات السريعة",
+    "recentActivity": "النشاط الأخير"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "languageDescription": "تغيير لغة التطبيق",
+    "notifications": "الإشعارات",
+    "subscription": "الاشتراك",
+    "save": "حفظ",
+    "saved": "تم حفظ الإعدادات بنجاح"
+  },
+  "resources": {
+    "title": "الموارد",
+    "categories": {
+      "gigs": "العمل المؤقت",
+      "finance": "المالية",
+      "banking": "البنوك",
+      "essentials": "الأساسيات",
+      "training": "التدريب",
+      "community": "المجتمع"
+    }
+  },
+  "errors": {
+    "notFoundTitle": "لم يتم العثور على الصفحة",
+    "backHome": "العودة إلى الرئيسية"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ ما",
+    "retry": "حاول مرة أخرى",
+    "back": "رجوع",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "done": "تم",
+    "next": "التالي",
+    "previous": "السابق",
+    "close": "إغلاق"
+  }
+}

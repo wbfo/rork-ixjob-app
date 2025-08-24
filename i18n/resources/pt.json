@@ -1,0 +1,113 @@
+{
+  "app": {
+    "title": "ixJOB"
+  },
+  "language": {
+    "welcomeTo": "Bem-vindo ao",
+    "appName": "ixJOB",
+    "tagline": "Seu treinador de carreira com IA que fala o seu idioma",
+    "selectLanguage": "Selecionar idioma",
+    "continue": "Continuar",
+    "changeAnytime": "Você pode alterar isso a qualquer momento nas Configurações.",
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文（简体）",
+      "ar": "العربية",
+      "pt": "Português (Brasil)"
+    }
+  },
+  "welcome": {
+    "welcomeTo": "Bem-vindo ao",
+    "appName": "ixJOB",
+    "tagline": "Seu treinador de carreira com IA que fala o seu idioma",
+    "login": "Entrar",
+    "signup": "Cadastrar-se",
+    "changeLanguage": "Alterar idioma"
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de Volta",
+      "subtitle": "Entre na sua conta",
+      "email": "E-mail",
+      "password": "Senha",
+      "forgotPassword": "Esqueceu a Senha?",
+      "loginButton": "Entrar",
+      "noAccount": "Não tem uma conta?",
+      "signUpLink": "Cadastre-se"
+    },
+    "signup": {
+      "title": "Criar Conta",
+      "subtitle": "Junte-se a milhares encontrando seus empregos dos sonhos",
+      "name": "Nome Completo",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar Senha",
+      "signupButton": "Cadastrar-se",
+      "hasAccount": "Já tem uma conta?",
+      "loginLink": "Entrar"
+    },
+    "forgot": {
+      "title": "Redefinir Senha",
+      "subtitle": "Digite seu e-mail para receber instruções de redefinição",
+      "email": "E-mail",
+      "sendButton": "Enviar Link de Redefinição",
+      "backToLogin": "Voltar ao Login"
+    }
+  },
+  "nav": {
+    "dashboard": "Painel",
+    "resume": "Currículo",
+    "translate": "Tradutor",
+    "interview": "Entrevista",
+    "tracker": "Rastreador",
+    "resources": "Recursos",
+    "chat": "Chat",
+    "settings": "Configurações"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "welcome": "Bem-vindo de volta!",
+    "quickActions": "Ações Rápidas",
+    "recentActivity": "Atividade Recente"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": "Idioma",
+    "languageDescription": "Alterar o idioma do aplicativo",
+    "notifications": "Notificações",
+    "subscription": "Assinatura",
+    "save": "Salvar",
+    "saved": "Configurações salvas com sucesso"
+  },
+  "resources": {
+    "title": "Recursos",
+    "categories": {
+      "gigs": "Trabalho Freelance",
+      "finance": "Finanças",
+      "banking": "Bancos",
+      "essentials": "Essenciais",
+      "training": "Treinamento",
+      "community": "Comunidade"
+    }
+  },
+  "errors": {
+    "notFoundTitle": "Página não encontrada",
+    "backHome": "Voltar ao Início"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Algo deu errado",
+    "retry": "Tentar Novamente",
+    "back": "Voltar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "done": "Concluído",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "close": "Fechar"
+  }
+}

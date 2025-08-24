@@ -1,0 +1,113 @@
+{
+  "app": {
+    "title": "IxJOB"
+  },
+  "language": {
+    "welcomeTo": "欢迎使用",
+    "appName": "IxJOB",
+    "tagline": "您的 AI 求职教练，支持多语言",
+    "selectLanguage": "选择语言",
+    "continue": "继续",
+    "changeAnytime": "您可以随时在设置中更改此选项。",
+    "options": {
+      "en": "English",
+      "es": "Español",
+      "zh": "中文（简体）",
+      "ar": "العربية",
+      "pt": "Português (Brasil)"
+    }
+  },
+  "welcome": {
+    "welcomeTo": "欢迎使用",
+    "appName": "IxJOB",
+    "tagline": "您的 AI 求职教练，支持多语言",
+    "login": "登录",
+    "signup": "注册",
+    "changeLanguage": "更改语言"
+  },
+  "auth": {
+    "login": {
+      "title": "欢迎回来",
+      "subtitle": "登录您的账户",
+      "email": "邮箱",
+      "password": "密码",
+      "forgotPassword": "忘记密码？",
+      "loginButton": "登录",
+      "noAccount": "还没有账户？",
+      "signUpLink": "注册"
+    },
+    "signup": {
+      "title": "创建账户",
+      "subtitle": "加入数千人寻找理想工作的行列",
+      "name": "全名",
+      "email": "邮箱",
+      "password": "密码",
+      "confirmPassword": "确认密码",
+      "signupButton": "注册",
+      "hasAccount": "已有账户？",
+      "loginLink": "登录"
+    },
+    "forgot": {
+      "title": "重置密码",
+      "subtitle": "输入您的邮箱以接收重置说明",
+      "email": "邮箱",
+      "sendButton": "发送重置链接",
+      "backToLogin": "返回登录"
+    }
+  },
+  "nav": {
+    "dashboard": "仪表板",
+    "resume": "简历",
+    "translate": "翻译器",
+    "interview": "面试",
+    "tracker": "跟踪器",
+    "resources": "资源",
+    "chat": "聊天",
+    "settings": "设置"
+  },
+  "dashboard": {
+    "title": "仪表板",
+    "welcome": "欢迎回来！",
+    "quickActions": "快速操作",
+    "recentActivity": "最近活动"
+  },
+  "settings": {
+    "title": "设置",
+    "language": "语言",
+    "languageDescription": "更改应用语言",
+    "notifications": "通知",
+    "subscription": "订阅",
+    "save": "保存",
+    "saved": "设置保存成功"
+  },
+  "resources": {
+    "title": "资源",
+    "categories": {
+      "gigs": "零工工作",
+      "finance": "金融",
+      "banking": "银行",
+      "essentials": "必需品",
+      "training": "培训",
+      "community": "社区"
+    }
+  },
+  "errors": {
+    "notFoundTitle": "找不到页面",
+    "backHome": "返回首页"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出现错误",
+    "retry": "重试",
+    "back": "返回",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "done": "完成",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "关闭"
+  }
+}

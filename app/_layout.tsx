@@ -1,0 +1,103 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { trpc, trpcClient } from "@/lib/trpc";
+import { Stack, usePathname } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import React, { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AuthProvider } from "@/providers/AuthProvider";
+import { LanguageProvider } from "@/providers/LanguageProvider";
+import { DashboardLayoutProvider } from "@/state/useDashboardLayout";
+import { GradientBackground } from "@/theme/GradientBackground";
+import { colors } from '@/theme/tokens';
+import '@/i18n';
+import { NotificationsProvider } from "@/providers/NotificationsProvider";
+import AppTopBar from "@/components/AppTopBar";
+import { FloatingChatBubble } from "@/components/FloatingChatBubble";
+import { ChatContent } from "@/components/ChatContent";
+
+SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient();
+
+// Fallback mapping if a screen forgets to set a title
+const mapRouteToTitle = (name: string) => {
+  const pretty = name.split('/').pop()?.replace(/[-_]/g, ' ') ?? 'ixJOB';
+  return pretty
+    .split(' ')
+    .map(w => (w.length ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(' ');
+};
+
+function RootLayoutNav() {
+  const pathname = usePathname();
+  const hideChat = pathname === '/welcome' || pathname === '/' || pathname === '/language' || pathname.startsWith('/(auth)');
+
+  return (
+    <GradientBackground>
+      <Stack
+        screenOptions={{
+          headerShown: true,
+          header: ({ options, route, navigation }) => (
+            <AppTopBar
+              title={typeof options.title === 'string' ? options.title : mapRouteToTitle(route.name)}
+              onPressBell={() => navigation.navigate('notifications' as never)}
+              onPressProfile={() => navigation.navigate('profile' as never)}
+            />
+          ),
+          freezeOnBlur: false,
+          headerTransparent: false,
+          contentStyle: { backgroundColor: 'transparent' },
+          headerTintColor: colors.text,
+          gestureEnabled: true,
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="language" options={{ headerShown: false }} />
+        <Stack.Screen name="welcome" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
+        <Stack.Screen name="resume" options={{ headerShown: true }} />
+        <Stack.Screen 
+          name="settings" 
+          options={{
+            headerShown: true,
+            gestureEnabled: true,
+          }} 
+        />
+        <Stack.Screen name="profile" options={{ headerShown: true }} />
+        <Stack.Screen name="notifications" options={{ headerShown: true }} />
+        <Stack.Screen name="community" options={{ headerShown: true }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      {!hideChat && (
+        <FloatingChatBubble>
+          <ChatContent />
+        </FloatingChatBubble>
+      )}
+    </GradientBackground>
+  );
+}
+
+export default function RootLayout() {
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  return (
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+        <AuthProvider>
+          <DashboardLayoutProvider>
+            <NotificationsProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <RootLayoutNav />
+              </GestureHandlerRootView>
+            </NotificationsProvider>
+          </DashboardLayoutProvider>
+        </AuthProvider>
+        </LanguageProvider>
+      </QueryClientProvider>
+    </trpc.Provider>
+  );
+}
