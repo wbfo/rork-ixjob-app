@@ -50,8 +50,9 @@ app.use('*', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🎉 ixJOB Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🎉 ixJOB Server running on http://0.0.0.0:${PORT}`);
   console.log(`🏥 Health check: http://localhost:${PORT}/health`);
   console.log(`📱 Ping: http://localhost:${PORT}/ping`);
+  console.log(`📱 Network: Server accessible from LAN devices`);
 });
