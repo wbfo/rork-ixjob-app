@@ -61,23 +61,38 @@ const routes = {
   '/ping': (req, res) => {
     console.log(`📡 ${req.method} /ping - Health check`);
     sendJSON(res, {
-      message: 'pong',
-      timestamp: getTimestamp(),
-      server: 'ixJOB Minimal Server',
-      uptime: process.uptime()
+      pong: true,
+      timestamp: getTimestamp()
     });
   },
 
   '/health': (req, res) => {
     console.log(`🏥 ${req.method} /health - Health status`);
+    const start = Date.now();
+    const mem = process.memoryUsage();
+    const used = Math.round(mem.heapUsed / 1024 / 1024) + 'MB';
+    const total = Math.round(mem.heapTotal / 1024 / 1024) + 'MB';
+    const responseTime = Date.now() - start;
     sendJSON(res, {
       ok: true,
-      message: 'ixJOB Server is running',
+      env: process.env.NODE_ENV || 'development',
       timestamp: getTimestamp(),
-      version: '1.0.0',
-      environment: process.env.NODE_ENV || 'development',
       uptime: Math.floor(process.uptime()),
-      memory: process.memoryUsage()
+      responseTime: responseTime + 'ms',
+      database: {
+        status: 'mock',
+        latency: '0ms'
+      },
+      services: {
+        ai: ['mock'],
+        cors: 'enabled',
+        rateLimit: 'disabled'
+      },
+      memory: {
+        used,
+        total
+      },
+      version: '1.0.0'
     });
   },
 
@@ -86,7 +101,10 @@ const routes = {
     sendJSON(res, {
       ready: true,
       timestamp: getTimestamp(),
-      status: 'operational'
+      checks: {
+        database: 'mock',
+        environment: process.env.NODE_ENV || 'development'
+      }
     });
   },
 
@@ -97,9 +115,9 @@ const routes = {
       version: '1.0.0',
       timestamp: getTimestamp(),
       endpoints: [
-        'GET /ping - Health check',
-        'GET /health - Detailed health status',
-        'GET /ready - Readiness probe',
+        'GET /ping - Health check (returns { pong: true, timestamp })',
+        'GET /health - Detailed health status (HealthStatus)',
+        'GET /ready - Readiness probe (ReadinessStatus)',
         'GET /api - API information',
         'POST /api/trpc/* - Mock tRPC endpoints'
       ],
