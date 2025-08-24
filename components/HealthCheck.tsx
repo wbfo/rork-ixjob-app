@@ -29,7 +29,7 @@ export const HealthCheck = () => {
     try {
       setRestStatus('loading');
       // Try to access the API ping endpoint
-      const response = await fetch(`${API_BASE}/ping`);
+      const response = await fetch(`${API_BASE}/api/ping`);
       if (response.ok) {
         const text = await response.text();
         console.log('REST API response:', text);
@@ -95,9 +95,9 @@ export const HealthCheck = () => {
         <View style={styles.infoContainer}>
           <Text style={styles.infoText}>API Base: {API_BASE}</Text>
           <Text style={styles.infoText}>tRPC Endpoint: {API_BASE}/api/trpc</Text>
-          <Text style={styles.infoText}>REST Endpoint: {API_BASE}/ping</Text>
+          <Text style={styles.infoText}>REST Endpoint: {API_BASE}/api/ping</Text>
           <Text style={styles.infoText}>Platform: {Platform.OS}</Text>
-          <Text style={styles.infoText}>Tip: On a real device, set EXPO_PUBLIC_API_BASE to your computer's LAN IP, e.g. http://192.168.x.x:3001</Text>
+          <Text style={styles.infoText}>Tip: On a real device, set EXPO_PUBLIC_API_BASE to your computer&apos;s LAN IP, e.g. http://192.168.x.x:3001</Text>
         </View>
 
         <View style={styles.troubleshootContainer}>
