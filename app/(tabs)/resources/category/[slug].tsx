@@ -4,7 +4,7 @@ import { useLocalSearchParams, router } from 'expo-router';
 import { ExternalLink } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { ROUTES } from '@/constants/routes';
-import { useHeaderTitleLiteral } from '@/hooks/useHeaderTitle';
+
 
 export default function CategoryScreen() {
   const { slug } = useLocalSearchParams();
@@ -18,7 +18,7 @@ export default function CategoryScreen() {
     community: 'Community Resources',
   };
 
-  useHeaderTitleLiteral(categoryTitles[slug as string] || 'Resources');
+
 
   // Mock data - replace with actual data
   const resources = [

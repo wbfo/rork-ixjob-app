@@ -34,6 +34,18 @@ const mapRouteToTitle = (name: string) => {
     'dev': 'Dev Tools',
   };
   
+  // Handle resources sub-routes specifically
+  if (name.includes('resources')) {
+    if (name.includes('tools/translator')) return 'Translator';
+    if (name.includes('tools/notes')) return 'Notes';
+    if (name.includes('tools')) return 'Tools';
+    if (name.includes('category')) {
+      // This is a fallback - the actual title should come from the route options
+      return 'Category';
+    }
+    return 'Resources';
+  }
+  
   // Extract the main route name
   const routeName = name.includes('(tabs)') 
     ? name.split('/(tabs)/')[1]?.split('/')[0] || name.split('/').pop()

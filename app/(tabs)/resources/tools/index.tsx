@@ -4,10 +4,10 @@ import Colors from '@/constants/colors';
 import { Card } from '@/components/ui/Card';
 import { Languages, NotebookPen } from 'lucide-react-native';
 import { router } from 'expo-router';
-import { useHeaderTitleLiteral } from '@/hooks/useHeaderTitle';
+
 
 export default function ToolsScreen() {
-  useHeaderTitleLiteral('Tools');
+
   
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>

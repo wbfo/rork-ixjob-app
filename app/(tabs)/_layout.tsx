@@ -107,7 +107,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <BookOpen size={size} color={color} />
           ),
-          headerShown: false, // Let the inner stack handle headers
         }}
       />
       <Tabs.Screen

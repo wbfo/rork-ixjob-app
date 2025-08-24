@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import { useLocalSearchParams } from 'expo-router';
 import { ExternalLink, Star, Users, Clock } from 'lucide-react-native';
 import Colors from '@/constants/colors';
-import { useHeaderTitleLiteral } from '@/hooks/useHeaderTitle';
+
 
 export default function ResourceDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -34,7 +34,7 @@ export default function ResourceDetailScreen() {
     },
   };
 
-  useHeaderTitleLiteral(resource.title);
+
 
   const handleGetStarted = () => {
     console.log('Get Started clicked for resource:', id);

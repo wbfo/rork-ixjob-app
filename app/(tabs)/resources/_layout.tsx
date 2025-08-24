@@ -8,44 +8,56 @@ export default function ResourcesLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
+        headerShown: false, // Let the main app layout handle headers
         headerBackVisible: true,
       }}
     >
       <Stack.Screen 
         name="index" 
         options={{ 
-          title: t('resources.title', 'Resources'),
+          title: t('nav.resources', 'Resources'),
         }} 
       />
       <Stack.Screen 
         name="tools/index" 
         options={{ 
-          title: t('resources.tools', 'Tools'),
+          title: 'Tools',
         }} 
       />
       <Stack.Screen 
         name="tools/translator" 
         options={{ 
-          title: t('resources.translator', 'Translator'),
+          title: 'Translator',
         }} 
       />
       <Stack.Screen 
         name="tools/notes" 
         options={{ 
-          title: t('resources.notes', 'Notes'),
+          title: 'Notes',
         }} 
       />
       <Stack.Screen 
         name="category/[slug]" 
-        options={{ 
-          title: t('resources.category', 'Category'),
-        }} 
+        options={({ route }) => {
+          const params = route.params as { slug?: string } | undefined;
+          const slug = params?.slug;
+          const categoryTitles: Record<string, string> = {
+            gigs: 'Gig Economy',
+            finance: 'Financial Services',
+            banking: 'Banking Solutions',
+            essentials: 'Essential Services',
+            training: 'Training & Education',
+            community: 'Community Resources',
+          };
+          return {
+            title: slug ? (categoryTitles[slug] || 'Category') : 'Category',
+          };
+        }}
       />
       <Stack.Screen 
         name="[id]" 
         options={{ 
-          title: t('resources.details', 'Resource Details'),
+          title: 'Resource Details',
         }} 
       />
     </Stack>
