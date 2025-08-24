@@ -13,14 +13,17 @@ function getTimestamp() {
   return new Date().toISOString();
 }
 
+function setCorsHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
+
 function sendJSON(res, data, statusCode = 200) {
-  res.writeHead(statusCode, {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-    'Access-Control-Max-Age': '86400'
-  });
+  setCorsHeaders(res);
+  res.statusCode = statusCode;
+  res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(data, null, 2));
 }
 
@@ -201,14 +204,15 @@ function handleRequest(req, res) {
   const pathname = parsedUrl.pathname;
   const method = req.method;
 
+  const origin = req.headers['origin'] || '-';
+  const ua = req.headers['user-agent'] || '-';
+  const ts = getTimestamp();
+  console.log(`➡️  ${method} ${pathname} | origin=${origin} | ua=${ua} | time=${ts}`);
+
   // Handle CORS preflight
   if (method === 'OPTIONS') {
-    res.writeHead(200, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-      'Access-Control-Max-Age': '86400'
-    });
+    setCorsHeaders(res);
+    res.writeHead(204);
     res.end();
     return;
   }
