@@ -139,12 +139,12 @@ const styles = StyleSheet.create({
     zIndex: -1,
   },
   topSection: {
-    height: '50%',
-    backgroundColor: colors.primaryLight,
+    height: '30%',
+    backgroundColor: colors.blue600,
   },
   bottomSection: {
-    height: '50%',
-    backgroundColor: colors.blue600,
+    height: '70%',
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    maxWidth: 350,
+    maxWidth: 320,
   },
   languageCard: {
     paddingVertical: spacing.lg,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
-    width: '85%',
+    width: '75%',
     alignSelf: 'center',
   },
   cardHeader: {
@@ -179,14 +179,14 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   cardTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '700',
     color: colors.text,
     textAlign: 'center',
     marginBottom: spacing.xs,
   },
   cardSubtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: colors.textMuted,
     textAlign: 'center',
   },
@@ -228,6 +228,7 @@ const styles = StyleSheet.create({
   languageTextContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   languageFlag: {
     fontSize: 24,
