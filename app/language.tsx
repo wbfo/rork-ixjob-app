@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, Dimensions, Platform } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/providers/LanguageProvider';
 import i18n, { type SupportedLanguage } from '@/i18n';
 import { LoadingView } from '@/components/LoadingView';
 import { Screen } from '@/components/Screen';
-import { Globe } from 'lucide-react-native';
 import { Card } from '@/components/ui/Card';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { Dropdown } from '@/components/ui/Dropdown';
-import { layout, colors } from '@/theme/tokens';
+import { colors, radius, spacing } from '@/theme/tokens';
 import { StatusBar } from 'expo-status-bar';
 
 interface LanguageOption {
@@ -22,9 +20,9 @@ interface LanguageOption {
 const languageOptions: LanguageOption[] = [
   { code: 'en', nativeName: 'English', flag: '🇺🇸' },
   { code: 'es', nativeName: 'Español', flag: '🇪🇸' },
-  { code: 'zh', nativeName: '中文（简体）', flag: '🇨🇳' },
+  { code: 'zh', nativeName: '中文', flag: '🇨🇳' },
   { code: 'ar', nativeName: 'العربية', flag: '🇸🇦' },
-  { code: 'pt', nativeName: 'Português (Brasil)', flag: '🇧🇷' },
+  { code: 'pt', nativeName: 'Português', flag: '🇧🇷' },
 ];
 
 export default function LanguageScreen() {
@@ -58,76 +56,139 @@ export default function LanguageScreen() {
     return <LoadingView message="Setting up your language..." />;
   }
 
-  const screenHeight = Dimensions.get('window').height;
-  const headerHeight = screenHeight * layout.headerRatio;
-
   return (
     <Screen gradientOverride={[colors.primaryLight, colors.blue600]}>
       <StatusBar style="light" />
 
-      <View style={[styles.headerSection, { minHeight: headerHeight }]} testID="language-header">
-        <Globe size={112} color={colors.textOnBlue} accessibilityLabel="Globe" />
-        <Text style={styles.title} accessibilityRole="header">
-          {t('onboarding.language.title','Choose Your Language')}
-        </Text>
-        <Text style={styles.subtitle} accessibilityHint={t('onboarding.language.subtitle','IxJOB adapts to you — pick the language you’re most comfortable with.')}>
-          {t('onboarding.language.subtitle','IxJOB adapts to you — pick the language you’re most comfortable with.')}
-        </Text>
-      </View>
+      <View style={styles.container}>
+        <View style={styles.cardContainer}>
+          <Card style={styles.languageCard}>
+            <View style={styles.cardHeader}>
+              <View style={styles.cardHandle} />
+              <Text style={styles.cardTitle}>
+                Welcome to ixJOB
+              </Text>
+              <Text style={styles.cardSubtitle}>
+                Select your language
+              </Text>
+            </View>
 
-      <View style={styles.middleSection}>
-        <Card>
-          <Dropdown
-            label={t('onboarding.language.title','Choose Your Language')}
-            selectedValue={selectedLanguage}
-            onValueChange={handleLanguageSelect}
-            options={languageOptions}
-            placeholder={t('onboarding.language.title','Choose Your Language')}
-            testID="language-picker"
-          />
-        </Card>
-      </View>
+            <View style={styles.languageList}>
+              {languageOptions.map((option) => (
+                <TouchableOpacity
+                  key={option.code}
+                  style={styles.languageOption}
+                  onPress={() => handleLanguageSelect(option.code)}
+                  testID={`language-option-${option.code}`}
+                >
+                  <View style={styles.radioContainer}>
+                    <View style={[
+                      styles.radioButton,
+                      selectedLanguage === option.code && styles.radioButtonSelected
+                    ]}>
+                      {selectedLanguage === option.code && (
+                        <View style={styles.radioButtonInner} />
+                      )}
+                    </View>
+                  </View>
+                  <Text style={styles.languageText}>
+                    {option.nativeName}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
 
-      <View style={styles.bottomSection}>
-        <PrimaryButton
-          title={t('common.continue','Continue')}
-          onPress={handleContinue}
-          disabled={!selectedLanguage || isLoading}
-          testID="continue-button"
-        />
+            <View style={styles.buttonContainer}>
+              <PrimaryButton
+                title="Continue"
+                onPress={handleContinue}
+                disabled={!selectedLanguage || isLoading}
+                testID="continue-button"
+              />
+            </View>
+          </Card>
+        </View>
       </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  headerSection: {
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+  },
+  cardContainer: {
+    width: '100%',
+    maxWidth: 400,
+  },
+  languageCard: {
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.lg,
+  },
+  cardHeader: {
+    alignItems: 'center',
+    marginBottom: spacing.xl,
+  },
+  cardHandle: {
+    width: 40,
+    height: 4,
+    backgroundColor: colors.textMuted,
+    borderRadius: 2,
+    marginBottom: spacing.lg,
+  },
+  cardTitle: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    textAlign: 'center',
+    marginBottom: spacing.xs,
+  },
+  cardSubtitle: {
+    fontSize: 16,
+    color: colors.textMuted,
+    textAlign: 'center',
+  },
+  languageList: {
+    marginBottom: spacing.xl,
+  },
+  languageOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.sm,
+    borderRadius: radius.md,
+    marginBottom: spacing.sm,
+  },
+  radioContainer: {
+    marginRight: spacing.md,
+  },
+  radioButton: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: colors.border,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    marginTop: 16,
-    color: colors.textOnBlue,
-    fontSize: 24,
-    fontWeight: '700',
-    textAlign: 'center',
+  radioButtonSelected: {
+    borderColor: colors.primary,
   },
-  subtitle: {
-    marginTop: 8,
-    color: colors.textOnBlueSecondary,
+  radioButtonInner: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: colors.primary,
+  },
+  languageText: {
     fontSize: 16,
-    textAlign: 'center',
-    paddingHorizontal: 12,
+    color: colors.text,
+    fontWeight: '500',
   },
-  middleSection: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingTop: 24,
-  },
-  bottomSection: {
-    paddingBottom: 32,
-    alignItems: 'center',
-    minHeight: 96,
-    justifyContent: 'flex-end',
+  buttonContainer: {
+    marginTop: spacing.md,
   },
 });
