@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
-import { useTranslation } from 'react-i18next';
+
 import { useLanguage } from '@/providers/LanguageProvider';
 import i18n, { type SupportedLanguage } from '@/i18n';
 import { LoadingView } from '@/components/LoadingView';
-import { Screen } from '@/components/Screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from '@/components/ui/Card';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { colors, radius, spacing } from '@/theme/tokens';
@@ -26,7 +26,7 @@ const languageOptions: LanguageOption[] = [
 ];
 
 export default function LanguageScreen() {
-  const { t } = useTranslation();
+  // We don't use translation here as this is the language selection screen
   const { setLanguage } = useLanguage();
   const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,8 +57,13 @@ export default function LanguageScreen() {
   }
 
   return (
-    <Screen gradientOverride={[colors.primaryLight, colors.blue600]}>
+    <View style={styles.mainContainer}>
       <StatusBar style="light" />
+      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.backgroundContainer}>
+        <View style={styles.topSection} />
+        <View style={styles.bottomSection} />
+      </View>
 
       <View style={styles.container}>
         <View style={styles.cardContainer}>
@@ -91,9 +96,12 @@ export default function LanguageScreen() {
                       )}
                     </View>
                   </View>
-                  <Text style={styles.languageText}>
-                    {option.nativeName}
-                  </Text>
+                  <View style={styles.languageTextContainer}>
+                    <Text style={styles.languageFlag}>{option.flag}</Text>
+                    <Text style={styles.languageText}>
+                      {option.nativeName}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
               ))}
             </View>
@@ -109,11 +117,35 @@ export default function LanguageScreen() {
           </Card>
         </View>
       </View>
-    </Screen>
+    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    position: 'relative',
+  },
+  safeArea: {
+    flex: 1,
+  },
+  backgroundContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
+  topSection: {
+    height: '50%',
+    backgroundColor: colors.primaryLight,
+  },
+  bottomSection: {
+    height: '50%',
+    backgroundColor: colors.blue600,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -127,6 +159,11 @@ const styles = StyleSheet.create({
   languageCard: {
     paddingVertical: spacing.xl,
     paddingHorizontal: spacing.lg,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
   },
   cardHeader: {
     alignItems: 'center',
@@ -158,17 +195,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: spacing.md,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.md,
     borderRadius: radius.md,
     marginBottom: spacing.sm,
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   radioContainer: {
     marginRight: spacing.md,
   },
   radioButton: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     borderWidth: 2,
     borderColor: colors.border,
     alignItems: 'center',
@@ -178,10 +218,18 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   radioButtonInner: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
     backgroundColor: colors.primary,
+  },
+  languageTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  languageFlag: {
+    fontSize: 28,
+    marginRight: spacing.sm,
   },
   languageText: {
     fontSize: 16,
