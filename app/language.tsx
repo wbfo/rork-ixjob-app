@@ -71,7 +71,10 @@ export default function LanguageScreen() {
             <View style={styles.cardHeader}>
               <View style={styles.cardHandle} />
               <Text style={styles.cardTitle}>
-                Welcome to ixJOB
+                Welcome to
+              </Text>
+              <Text style={styles.cardTitleBold}>
+                IxJOB
               </Text>
               <Text style={styles.cardSubtitle}>
                 Select your language
@@ -180,10 +183,17 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: '500',
     color: colors.text,
     textAlign: 'center',
     marginBottom: spacing.xs,
+  },
+  cardTitleBold: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: colors.text,
+    textAlign: 'center',
+    marginBottom: spacing.md,
   },
   cardSubtitle: {
     fontSize: 15,
