@@ -154,20 +154,22 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: 350,
   },
   languageCard: {
-    paddingVertical: spacing.xl,
-    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg,
+    paddingHorizontal: spacing.md,
     elevation: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
+    width: '85%',
+    alignSelf: 'center',
   },
   cardHeader: {
     alignItems: 'center',
-    marginBottom: spacing.xl,
+    marginBottom: spacing.md,
   },
   cardHandle: {
     width: 40,
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   cardTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '700',
     color: colors.text,
     textAlign: 'center',
@@ -189,12 +191,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   languageList: {
-    marginBottom: spacing.xl,
+    marginBottom: spacing.md,
   },
   languageOption: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.sm,
     paddingHorizontal: spacing.md,
     borderRadius: radius.md,
     marginBottom: spacing.sm,
@@ -228,7 +230,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   languageFlag: {
-    fontSize: 28,
+    fontSize: 24,
     marginRight: spacing.sm,
   },
   languageText: {
