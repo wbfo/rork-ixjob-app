@@ -31,9 +31,10 @@ export default function WelcomeScreen() {
               accessibilityLabel={t('auth.welcome.avatarAlt', { defaultValue: 'Jobii the owl avatar' })}
               testID="welcome-avatar"
             />
-            <Text style={styles.title} testID="welcome-title" accessibilityRole={Platform.OS === 'web' ? undefined : 'header'}>
-              {t('auth.welcome.title', { defaultValue: 'Welcome to IxJOB' })}
-            </Text>
+            <View accessible accessibilityRole={Platform.OS === 'web' ? undefined : 'header'}>
+              <Text style={styles.title} testID="welcome-title-line1">Welcome to</Text>
+              <Text style={styles.titleBrand} testID="welcome-title-line2">IxJOB</Text>
+            </View>
             <Text style={styles.subtitle} testID="welcome-subtitle">
               {t('auth.welcome.subtitle', { defaultValue: 'Your AI job coach, ready to help you land your next role.' })}
             </Text>
@@ -141,8 +142,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff22',
   },
   title: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontSize: 28,
+    fontWeight: '600',
+    color: colors.textOnBlue,
+    textAlign: 'center',
+    marginBottom: 0,
+  },
+  titleBrand: {
+    fontSize: 36,
+    fontWeight: '800',
     color: colors.textOnBlue,
     textAlign: 'center',
     marginBottom: spacing.sm,
